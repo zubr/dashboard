@@ -1,0 +1,72 @@
+<html>
+    <head>
+        <script type="text/javascript" src="js/kinetic-v4.7.4.min.js"></script>
+        <script type="text/javascript" src="js/underscore.js"></script>
+        <script type="text/javascript" src="js/dashboard.js"></script>
+    </head>
+    <body>
+        <div id="stage"></div>
+        <script defer="defer" type="text/javascript">
+            var items =[
+                {
+                    id: '1',
+                    name: 'some name',
+                    image: 'http://us.123rf.com/450wm/alexwhite/alexwhite1209/alexwhite120900028/15308542-moc-icon.jpg',
+                    start: new Date('October 01, 2013'),
+                    finish: new Date('October 04, 2013'),
+                    blocker: false
+                },
+                {
+                    id: '2',
+                    name: 'some name',
+                    image: 'http://www.html5canvastutorials.com/demos/assets/yoda.jpg',
+                    start: new Date('October 05, 2013'),
+                    finish: new Date('October 24, 2013'),
+                    blocker: true
+                },
+                {
+                    id: '3',
+                    name: 'some name',
+                    image: 'http://upload.wikimedia.org/wikipedia/commons/8/87/Google_Chrome_icon_(2011).png',
+                    start: new Date('October 7, 2013'),
+                    finish: new Date('October 22, 2013'),
+                    blocker: false
+                },
+                {
+                    id: '4',
+                    name: 'some name',
+                    image: 'http://www.html5canvastutorials.com/demos/assets/yoda.jpg',
+                    start: new Date('October 17, 2013'),
+                    finish: new Date('October 27, 2013'),
+                    blocker: false
+                },
+                {
+                    id: '4',
+                    name: 'some name',
+                    image: 'http://thegadgetox.net/wp-content/uploads/2013/11/Android-logo.png',
+                    start: new Date('October 23, 2013'),
+                    finish: new Date('October 30, 2013'),
+                    blocker: true
+                },
+                {
+                    id: '4',
+                    name: 'some name',
+                    image: 'http://www.html5canvastutorials.com/demos/assets/yoda.jpg',
+                    start: new Date('October 14, 2013'),
+                    finish: new Date('October 25, 2013'),
+                    blocker: false
+                },
+                {
+                    id: '4',
+                    name: 'some name',
+                    image: 'http://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/Approve_icon.svg/600px-Approve_icon.svg.png',
+                    start: new Date('October 01, 2013'),
+                    finish: new Date('October 04, 2013'),
+                    blocker: false
+                }
+            ];
+            var dashboard = new DashBoard(items);
+        </script>
+    </body>
+
+</html>
