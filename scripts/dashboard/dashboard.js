@@ -18,7 +18,7 @@ function Dashboard(items, options) {
             progressDefaultColor: '#33cc00',
             blockerColor: '#FF0000',
             progressBlockerColor: '#FF6600',
-            iconsRightMargin: 20
+            iconsRightMargin: 10
         }
     );
 
