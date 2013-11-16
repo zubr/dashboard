@@ -63,36 +63,11 @@ function Dashboard(items, options) {
         imageM = (dimensions.iconsW - itemH) / 2;
     }
 
-
-
-
     var stateFactory = new State(dimensions, options);
-
+    var iconFactory = new IconFactory(dimensions, options);
     _.each(items, function (itemData, key) {
-        var imageObj = new Image();
-        var imageH = dimensions.itemH;
-        var imageW = dimensions.iconsW;
-        var x = 0;
-        if (imageH < dimensions.iconsW) {
-            imageW = imageH;
-            x = (dimensions.iconsW - imageW)/2;
-        }
-
-        imageObj.onload = function () {
-            var item = new Kinetic.Image({
-                height: imageH - imageM * 2,
-                width: imageW,
-                y: (imageH * key) + imageM,
-                x: x,
-                image: imageObj
-            });
-            iconsLayer.add(item);
-            stage.draw();
-        };
-
-        imageObj.src = itemData.image;
-
-        var state = stateFactory.create(key, itemData, imageM, itemH);
+        iconFactory.extendLayer(key, itemData, iconsLayer, stage,imageM);
+        var state = stateFactory.create(key, itemData);
 
         mainLayer.add(state);
     });
