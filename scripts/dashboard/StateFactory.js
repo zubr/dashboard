@@ -1,4 +1,4 @@
-function State(dimensions, options) {
+function StateFactory(dimensions, options) {
     this.create = function(i, itemData) {
         var offsetStart = itemData.start.getTime() - dimensions.startT;
         var offsetFinish = itemData.finish.getTime() - dimensions.startT;

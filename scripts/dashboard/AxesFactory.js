@@ -1,4 +1,4 @@
-function Axes(){
+function AxesFactory(){
     this.createLayer = function(dimensions) {
         var axesLayer = new Kinetic.Layer({
             x: dimensions.mainX,

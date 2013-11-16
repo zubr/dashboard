@@ -1,10 +1,6 @@
 function Dashboard(items, options) {
     var calculator = new DimensionsCalculator();
 
-    function printAxes(dimensions, axesLayer) {
-
-    }
-
     if (options == null) {
         options = {};
     }
@@ -31,7 +27,7 @@ function Dashboard(items, options) {
     });
 
 
-    var axesFactory = new Axes();
+    var axesFactory = new AxesFactory();
     var axesLayer = axesFactory.createLayer(dimensions)
 
     var iconsLayer = new Kinetic.Layer({
@@ -55,18 +51,11 @@ function Dashboard(items, options) {
 
 
     iconsLayer.add(iconsArea);
-    var itemH = dimensions.mainH / items.length;
-    var imageM = null;
-    if (itemH > dimensions.iconsW) {
-        imageM = (itemH - dimensions.iconsW) / 2;
-    } else {
-        imageM = (dimensions.iconsW - itemH) / 2;
-    }
 
-    var stateFactory = new State(dimensions, options);
+    var stateFactory = new StateFactory(dimensions, options);
     var iconFactory = new IconFactory(dimensions, options);
     _.each(items, function (itemData, key) {
-        iconFactory.extendLayer(key, itemData, iconsLayer, stage,imageM);
+        iconFactory.extendLayer(key, itemData, iconsLayer, stage);
         var state = stateFactory.create(key, itemData);
 
         mainLayer.add(state);
