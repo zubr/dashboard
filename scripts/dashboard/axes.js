@@ -7,6 +7,8 @@ function Axes(){
             height: dimensions.mainH
         });
 
+        var border = 2;
+
         var axes = new Kinetic.Rect({
             x: 0,
             y: 0,
@@ -28,7 +30,8 @@ function Axes(){
 
         var x = new Kinetic.Line({
             points: [xFromX, xFromY, xToX, xToY, xToX-headLen*Math.cos(angleX-Math.PI/6),xToY-headLen*Math.sin(angleX-Math.PI/6),xToX, xToY, xToX-headLen*Math.cos(angleX+Math.PI/6),xToY-headLen*Math.sin(angleX+Math.PI/6)],
-            strokeWidth:1,
+            strokeWidth:border,
+            lineJoin: 'round',
             stroke: '#A0A0A0'
         });
 
@@ -40,8 +43,9 @@ function Axes(){
         var angle = Math.atan2(yToY-yFromY,yToX-yFromX);
         var y = new Kinetic.Line({
             points: [yFromX, yFromY, yToX, yToY, yToX-headLen*Math.cos(angle-Math.PI/6),yToY-headLen*Math.sin(angle-Math.PI/6),yToX, yToY, yToX-headLen*Math.cos(angle+Math.PI/6),yToY-headLen*Math.sin(angle+Math.PI/6)],
-            strokeWidth:1,
-            stroke: '#A0A0A0'
+            strokeWidth:border,
+            stroke: '#A0A0A0',
+            lineJoin: 'round'
         });
 
         axesLayer.add(x);
