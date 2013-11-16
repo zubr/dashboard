@@ -61,7 +61,7 @@
                     name: 'some name',
                     image: 'http://www.html5canvastutorials.com/demos/assets/yoda.jpg',
                     start: new Date('October 14, 2013'),
-                    finish: new Date('October 25, 2013'),
+                    finish: new Date('October 27, 2013'),
                     blocker: false,
                     progress: 18
                 },
@@ -72,10 +72,13 @@
                     start: new Date('October 01, 2013'),
                     finish: new Date('October 04, 2013'),
                     blocker: false,
-                    progress: 34
+                    progress: 70
                 }
             ];
-            var dashboard = new Dashboard(items);
+            var dashboard = new Dashboard(items, {
+                stageWidth: document.body.clientWidth * 90/100,
+                stageHeight: document.body.clientHeight * 90/100
+            });
         </script>
     </body>
 

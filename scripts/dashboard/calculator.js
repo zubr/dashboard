@@ -19,7 +19,7 @@ function DimensionsCalculator() {
 
         var marginH = options.stageHeight / 100;
         var marginW = options.stageWidth / 100;
-        var iconsW = 450 / items.length;
+        var iconsW = 600 / items.length;
 
         var mainH = options.stageHeight - 2 * marginH;
         var mainW = options.stageWidth - 2 * marginW - iconsW - options.iconsRightMargin;
