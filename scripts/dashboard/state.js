@@ -6,12 +6,8 @@ function State(dimensions, options) {
         var x = (offsetStart / maxOffset) * dimensions.mainW;
         var y = (offsetFinish / maxOffset) * dimensions.mainW;
 
-        var stateM = null;
-        if (dimensions.itemH > dimensions.iconsW) {
-            stateM = (dimensions.itemH - dimensions.iconsW) / 2;
-        } else {
-            stateM = (dimensions.iconsW - dimensions.itemH) / 2;
-        }
+
+        var stateM = dimensions.itemH * 0.1;
 
         var color = options.defaultColor;
         var progressColor = options.progressDefaultColor;
@@ -20,20 +16,21 @@ function State(dimensions, options) {
             progressColor = options.progressBlockerColor;
         }
 
-        var itemHWithMargin = dimensions.itemH - stateM * 2;
+        var itemHWithMargin = dimensions.itemH - 2 * stateM;
 
         var group = new Kinetic.Group({
             height: itemHWithMargin,
             width: y - x,
             x: x,
-            y: (dimensions.itemH * i) + stateM
+            y: (dimensions.itemH * i)
         });
+
 
         var rec = new Kinetic.Rect({
             height: itemHWithMargin,
             width: y - x,
             x: 0,
-            y: 0,
+            y: stateM,
             fill: color
         });
 
@@ -41,15 +38,16 @@ function State(dimensions, options) {
             height: itemHWithMargin,
             width: (y - x) * (itemData.progress / 100),
             x: 0,
-            y: 0,
+            y: stateM,
             fill: progressColor
         });
+
 
         var border = new Kinetic.Rect({
             height: itemHWithMargin,
             width: y - x,
             x: 0,
-            y: 0,
+            y: stateM,
             stroke: 'black',
             strokeWidth: 1
         });
