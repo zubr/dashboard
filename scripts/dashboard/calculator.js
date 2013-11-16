@@ -24,7 +24,7 @@ function DimensionsCalculator() {
         var mainH = options.stageHeight - 2 * marginH;
         var mainW = options.stageWidth - 2 * marginW - iconsW - options.iconsRightMargin;
         var mainX = marginW + options.iconsRightMargin + iconsW;
-
+        var itemH = mainH / items.length;
 
         return {
             stageWidth: options.stageWidth,
@@ -37,7 +37,8 @@ function DimensionsCalculator() {
             iconsW: iconsW,
             mainH: mainH,
             mainW: mainW,
-            mainX: mainX
+            mainX: mainX,
+            itemH: itemH
         }
     }
 };
