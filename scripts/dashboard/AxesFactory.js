@@ -48,8 +48,21 @@ function AxesFactory(){
             lineJoin: 'round'
         });
 
+        var now = new Date();
+        var offsetStart = now.getTime() - dimensions.startT;
+        var maxOffset = dimensions.finishT - dimensions.startT;
+        var currentTimeLineX = (offsetStart / maxOffset) * dimensions.mainW;
+        var currentTimeLine = new Kinetic.Line({
+            points: [currentTimeLineX, 0, currentTimeLineX, dimensions.mainH],
+            stroke: 'green',
+            dashArray: [5, 5],
+            strokeWidth:0.5
+        });
+
+
         axesLayer.add(x);
         axesLayer.add(y);
+        axesLayer.add(currentTimeLine);
 
         return axesLayer;
     }
