@@ -7,7 +7,7 @@ function StateFactory(dimensions, options) {
         var y = (offsetFinish / maxOffset) * dimensions.mainW;
 
 
-        var stateM = dimensions.itemH * 0.1;
+        var stateM = dimensions.itemH * 0.2;
 
         var color = options.defaultColor;
         var progressColor = options.progressDefaultColor;

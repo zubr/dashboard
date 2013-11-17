@@ -77,9 +77,11 @@ function AxesFactory(){
 
         var offset = (scaleStartT / timeRange) *  timeRange;
 
-        while(scaleStartT < dimensions.finishT) {
-            scaleStartT = scaleStartT + millisecondsInDay * scale;
-            offset = ((scaleStartT - dimensions.startT) / timeRange) *  dimensions.mainW;
+
+        scaleStartT = scaleStartT + millisecondsInDay * scale;
+        offset = ((scaleStartT - dimensions.startT) / timeRange) *  dimensions.mainW;
+
+        while(offset < dimensions.mainW - dimensions.marginW) {
 
             var line = new Kinetic.Line({
                 points: [offset, dimensions.mainH - 5, offset, dimensions.mainH + 5],
@@ -101,6 +103,9 @@ function AxesFactory(){
             });
 
             axesLayer.add(text);
+
+            scaleStartT = scaleStartT + millisecondsInDay * scale;
+            offset = ((scaleStartT - dimensions.startT) / timeRange) *  dimensions.mainW;
         }
 
     }
