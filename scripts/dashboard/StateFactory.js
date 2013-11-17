@@ -28,10 +28,11 @@ function StateFactory(dimensions, options) {
 
         var rec = new Kinetic.Rect({
             height: itemHWithMargin,
-            width: y - x,
-            x: 0,
+            width: (y - x) * (1 - (itemData.progress / 100)),
+            x: (y - x) * (itemData.progress / 100),
             y: stateM,
-            fill: color
+            fill: color,
+            opacity: 0.8
         });
 
         var progress = new Kinetic.Rect({
@@ -39,7 +40,8 @@ function StateFactory(dimensions, options) {
             width: (y - x) * (itemData.progress / 100),
             x: 0,
             y: stateM,
-            fill: progressColor
+            fill: progressColor,
+            opacity: 0.9
         });
 
 
@@ -53,9 +55,19 @@ function StateFactory(dimensions, options) {
         });
 
 
+        var releaseLine = new Kinetic.Line({
+            points: [y - x, dimensions.itemH - stateM, y - x, (dimensions.mainH - dimensions.itemH * i)],
+            stroke: 'black',
+            strokeWidth: 0.5,
+            dashArray: [5, 5],
+            opacity: 0.5
+        });
+
         group.add(rec);
         group.add(progress);
         group.add(border);
+        group.add(releaseLine);
+
         return group;
     }
 }

@@ -17,8 +17,8 @@ function DimensionsCalculator() {
         startT = startT - timeM;
         finishT = finishT + timeM;
 
-        var marginH = options.stageHeight / 100;
-        var marginW = options.stageWidth / 100;
+        var marginH = 20;
+        var marginW = 10;
 
         var mainH = options.stageHeight - 2 * marginH;
         var iconsW = mainH / items.length;

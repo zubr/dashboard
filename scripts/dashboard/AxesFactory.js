@@ -30,7 +30,7 @@ function AxesFactory(){
 
         var x = new Kinetic.Line({
             points: [xFromX, xFromY, xToX, xToY, xToX-headLen*Math.cos(angleX-Math.PI/6),xToY-headLen*Math.sin(angleX-Math.PI/6),xToX, xToY, xToX-headLen*Math.cos(angleX+Math.PI/6),xToY-headLen*Math.sin(angleX+Math.PI/6)],
-            strokeWidth:border,
+            strokeWidth:0.5,
             lineJoin: 'round',
             stroke: '#A0A0A0'
         });
@@ -43,7 +43,7 @@ function AxesFactory(){
         var angle = Math.atan2(yToY-yFromY,yToX-yFromX);
         var y = new Kinetic.Line({
             points: [yFromX, yFromY, yToX, yToY, yToX-headLen*Math.cos(angle-Math.PI/6),yToY-headLen*Math.sin(angle-Math.PI/6),yToX, yToY, yToX-headLen*Math.cos(angle+Math.PI/6),yToY-headLen*Math.sin(angle+Math.PI/6)],
-            strokeWidth:border,
+            strokeWidth:0.5,
             stroke: '#A0A0A0',
             lineJoin: 'round'
         });
@@ -59,11 +59,49 @@ function AxesFactory(){
             strokeWidth:0.5
         });
 
-
         axesLayer.add(x);
         axesLayer.add(y);
+
+        this.calculateScale(dimensions, axesLayer);
         axesLayer.add(currentTimeLine);
 
         return axesLayer;
+    }
+
+    this.calculateScale = function(dimensions, axesLayer) {
+        var millisecondsInDay = 86400000;
+        var timeRange = dimensions.finishT - dimensions.startT;
+        var days = timeRange / millisecondsInDay;
+        var scale = Math.ceil(days / 20);
+        var scaleStartT = Math.floor((dimensions.startT / millisecondsInDay)) * millisecondsInDay;
+
+        var offset = (scaleStartT / timeRange) *  timeRange;
+
+        while(scaleStartT < dimensions.finishT) {
+            scaleStartT = scaleStartT + millisecondsInDay * scale;
+            offset = ((scaleStartT - dimensions.startT) / timeRange) *  dimensions.mainW;
+
+            var line = new Kinetic.Line({
+                points: [offset, dimensions.mainH - 5, offset, dimensions.mainH + 5],
+                stroke: '#A0A0A0',
+                strokeWidth: 0.5
+            });
+
+            axesLayer.add(line);
+
+            var date = new Date(scaleStartT);
+
+            var text = new Kinetic.Text({
+                x: offset + 2,
+                y: dimensions.mainH,
+                text: date.getDate() +  "/" + date.getMonth(),
+                fill: 'black',
+                fontFamily: 'Calibri',
+                fontSize: 12
+            });
+
+            axesLayer.add(text);
+        }
+
     }
 }
